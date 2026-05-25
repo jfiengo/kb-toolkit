@@ -1,0 +1,18 @@
+# Obsidian workspace state (transient UI)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace
+
+# Smart Connections embedding cache (large, regenerable)
+.smart-env/
+.smart-connections/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Track plugin config (do NOT ignore these)
+!.obsidian/community-plugins.json
+!.obsidian/plugins/*/
