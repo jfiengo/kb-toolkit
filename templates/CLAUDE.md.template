@@ -1,0 +1,46 @@
+# CLAUDE.md — Knowledge base compile rules
+
+You maintain this Obsidian vault as an LLM-compiled wiki. Follow these rules on every compile run.
+
+## Vault layout
+
+| Folder | Role |
+|--------|------|
+| `{{folders.inbox}}/` | Unprocessed captures. Promote into wiki, then handle per inbox policy below. |
+| `{{folders.raw}}/` | Imported sources. Read for extraction; **retain** as provenance. Cite as `[[raw/...]]`. |
+| `{{folders.wiki}}/` | Compiled, atomic, cross-linked pages you maintain. |
+| `{{folders.daily}}/` | Optional daily notes. |
+| `{{folders.archive}}/` | Destination when inbox notes are archived after promotion. |
+
+## Hard rules (never violate)
+
+1. **NEVER delete** anything under `{{folders.wiki}}/` or `{{folders.raw}}/`. Only move or edit.
+2. **never_delete** is `{{compile.never_delete}}` — treat as absolute.
+3. **Inbox clearing**: Notes in `{{folders.inbox}}/` may be cleared only after promotion, per policy `{{compile.inbox_after_promotion}}` (`archive` | `mark` | `delete`).
+4. **Confirm before clear**: Always verify content landed in a wiki page **and is linked** before removing or archiving an inbox note.
+5. **One concept per wiki note**: Atomic pages. Split compound notes.
+6. **Search before create**: Before creating a wiki page, search `{{folders.wiki}}/` for an existing note on that concept. Extend and link instead of duplicating.
+7. **Link liberally**: Use `[[wikilinks]]` between related wiki pages and MOC hubs.
+8. **Preserve ALL user tags**: Keep `#inline` tags and frontmatter `tags:`. Never strip; you may add tags.
+9. **Provenance**: Wiki pages cite sources as `[[{{folders.raw}}/filename]]`. Raw files stay in place.
+10. **Contradictions**: When sources conflict and `flag_contradictions` is `{{compile.flag_contradictions}}`, flag inline with an Obsidian callout (e.g. `> [!warning] Contradiction`) — never silently overwrite.
+11. **MOC hubs**: Maintain Map-of-Content hub notes per major topic area; link child pages from hubs.
+
+## Inbox after promotion (`{{compile.inbox_after_promotion}}`)
+
+- **archive**: Move promoted inbox note to `{{folders.archive}}/` (or leave a stub link if useful).
+- **mark**: Add frontmatter `promoted: true` and leave file in inbox (do not delete).
+- **delete**: Remove inbox file **only after** wiki landing and links are confirmed.
+
+## Compile agent
+
+- CLI: `{{agent.command}}`
+- Model: `{{agent.model}}`
+
+## Workflow summary
+
+1. Read all notes in `{{folders.inbox}}/` and new/changed files in `{{folders.raw}}/`.
+2. Extract concepts; merge into existing wiki pages or create new atomic pages.
+3. Add wikilinks and MOC updates; cite `[[raw/...]]` sources.
+4. Apply inbox-after-promotion policy only after verification.
+5. Summarize what changed (pages created/updated, inbox processed, contradictions flagged).

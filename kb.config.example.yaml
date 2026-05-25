@@ -1,0 +1,39 @@
+# kb-toolkit configuration.
+# Copy to kb.config.yaml and edit. setup.sh reads this to wire your vault.
+
+# Absolute path to YOUR vault. MUST be outside this toolkit repo.
+# This is the only value most people need to change.
+vault_path: "~/notes"
+
+# Folder names inside the vault. Override only if you want different names.
+folders:
+  inbox: "inbox"       # your unprocessed captures (promoted, then cleared)
+  raw: "raw"           # imported sources (read for extraction, retained as citations)
+  wiki: "wiki"         # the compiled, cross-linked pages the agent maintains
+  daily: "daily"       # daily notes (optional)
+  archive: "archive"   # where promoted inbox notes go if inbox_after_promotion=archive
+
+# The LLM agent that runs the compile step. The toolkit shells out to this CLI.
+agent:
+  command: "claude"        # the CLI invoked to compile; must be on your PATH
+  model: "claude-opus-4-7" # model passed to the agent for compile runs
+
+compile:
+  schedule: "manual"            # "manual", or a cron string e.g. "0 2 * * *" (nightly 2am)
+  never_delete: true            # agent must NEVER delete wiki/ or raw/ content
+  flag_contradictions: true     # flag conflicts inline instead of overwriting
+  inbox_after_promotion: "archive"  # archive | mark | delete (archive is safest)
+
+git:
+  auto_commit: true   # commit the vault before and after every compile run
+  remote: "none"      # DEFAULT none = local-only, never pushed. Leave this unless
+                      # you have a private remote YOU control. Never push work notes.
+
+search:
+  provider: "smart-connections"  # smart-connections | open-connections | none
+                                 # semantic search lives in the Obsidian plugin, not here
+
+mcp:
+  enabled: false   # opt-in. Set true to use the vault from Claude Desktop.
+  host: "127.0.0.1"
+  port: 8787

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" font-family="system-ui, sans-serif">
+  <title>kb-toolkit architecture overview</title>
+  <rect width="820" height="420" fill="#f8f9fa"/>
+  <text x="410" y="36" text-anchor="middle" font-size="20" font-weight="bold">kb-toolkit: two-repo architecture</text>
+
+  <!-- Toolkit repo -->
+  <rect x="40" y="70" width="320" height="300" rx="8" fill="#e8f4fd" stroke="#2563eb" stroke-width="2"/>
+  <text x="200" y="100" text-anchor="middle" font-size="16" font-weight="bold">kb-toolkit (public repo)</text>
+  <text x="200" y="125" text-anchor="middle" font-size="12">Zero notes  scaffolding only</text>
+  <rect x="60" y="145" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="200" y="168" text-anchor="middle" font-size="11">scripts: setup.sh, compile.sh</text>
+  <rect x="60" y="190" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="200" y="213" text-anchor="middle" font-size="11">prompts/compile.md + templates/</text>
+  <rect x="60" y="235" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="200" y="258" text-anchor="middle" font-size="11">kb-mcp (stdio MCP server)</text>
+  <rect x="60" y="280" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="200" y="303" text-anchor="middle" font-size="11">kb.config.yaml � vault_path</text>
+  <text x="200" y="345" text-anchor="middle" font-size="11" fill="#64748b">uv + Python 3.11+</text>
+
+  <!-- Vault repo -->
+  <rect x="460" y="70" width="320" height="300" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="620" y="100" text-anchor="middle" font-size="16" font-weight="bold">Your vault (local-only)</text>
+  <text x="620" y="125" text-anchor="middle" font-size="12">Separate path  git remote: none</text>
+  <rect x="480" y="145" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="620" y="168" text-anchor="middle" font-size="11">inbox/  captures</text>
+  <rect x="480" y="190" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="620" y="213" text-anchor="middle" font-size="11">raw/  provenance sources</text>
+  <rect x="480" y="235" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="620" y="258" text-anchor="middle" font-size="11">wiki/  compiled pages</text>
+  <rect x="480" y="280" width="280" height="36" rx="4" fill="#fff" stroke="#94a3b8"/>
+  <text x="620" y="303" text-anchor="middle" font-size="11">CLAUDE.md  compile rules</text>
+  <text x="620" y="345" text-anchor="middle" font-size="11" fill="#64748b">Obsidian + Smart Connections</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <line x1="360" y1="200" x2="460" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="410" y="190" text-anchor="middle" font-size="10">acts on</text>
+  <line x1="460" y1="320" x2="360" y2="320" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="410" y="335" text-anchor="middle" font-size="10">never nested</text>
+
+  <!-- External -->
+  <rect x="280" y="385" width="260" height="28" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="410" y="404" text-anchor="middle" font-size="11">claude CLI (compile)  no telemetry in toolkit</text>
+</svg>
